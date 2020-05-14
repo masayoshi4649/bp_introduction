@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BP自己紹介</title>
+    <style>
+        body {
+            background-color: black;
+            color: rgb(0, 195, 255);
+        }
+
+        #canvas {
+            border: 3px solid white;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="./css/cropper.css">
+</head>
+
+<body onload="drawcanvas();">
+
+    <!-- WEBフォントメモ -->
+    <!-- <span style="font-family: WEBFONT; display:none;">preload</span><canvas></canvas> -->
+
+    <canvas id="canvas" width="1050" height="1485"></canvas>
+
+    <p>文字色：<input id="textcolor" type="color" list="color-list" value="#FFA500" onInput="drawcanvas();"></p>
+
+    <p>画像：<input type="file" id="uploader"></p>
+    <canvas id="sourceCanvas" width="0" height="0"></canvas>
+
+    <p>NAME：<input id="name" placeholder="NAME" onInput="drawcanvas();"></p>
+    <p>ID：<input id="id" placeholder="ID" onInput="drawcanvas();"></p>
+    <p>twitter：<input id="id_tw" placeholder="@example" onInput="drawcanvas();"></p>
+    <p>Discord：<input id="id_dc" placeholder="Discord#0000" onInput="drawcanvas();"></p>
+
+    <p>クラス1：<input type="checkbox" id="class1" onInput="drawcanvas();"></p>
+    <p id="class1_area">クラス1レベル：<input type="number" id="class1_lv" onInput="drawcanvas();"></p>
+    <p>クラス2：<input type="checkbox" id="class2" onInput="drawcanvas();"></p>
+    <p id="class2_area">クラス2レベル：<input type="number" id="class2_lv" onInput="drawcanvas();"></p>
+    <p>クラス3：<input type="checkbox" id="class3" onInput="drawcanvas();"></p>
+    <p id="class3_area">クラス3レベル：<input type="number" id="class3_lv" onInput="drawcanvas();"></p>
+    <p>クラス4：<input type="checkbox" id="class4" onInput="drawcanvas();"></p>
+    <p id="class4_area">クラス4レベル：<input type="number" id="class4_lv" onInput="drawcanvas();"></p>
+
+    <p>ランク：<input type="number" id="rank" placeholder="バトルスコア" onInput="drawcanvas();"></p>
+
+    <p>CAT：<input type="checkbox" id="cat" onInput="drawcanvas();"></p>
+    <p>CBT：<input type="checkbox" id="cbt" onInput="drawcanvas();"></p>
+
+    <p>プレイヤー特性：<input id="playstyle1" type="range" value="3" min="0" max="6" onInput="drawcanvas();"></p>
+    <p>戦闘スタイル：<input id="playstyle2" type="range" value="3" min="0" max="6" onInput="drawcanvas();"></p>
+
+    <p>平日_始<input id="weekd_beg" type="time" onInput="drawcanvas();"></p>
+    <p>平日_終<input id="weekd_fin" type="time" onInput="drawcanvas();"></p>
+    <p>休日_始<input id="holid_beg" type="time" onInput="drawcanvas();"></p>
+    <p>休日_終<input id="holid_fin" type="time" onInput="drawcanvas();"></p>
+
+    <p>VC:OK<input name="vc_radio" type="radio" value="0" onInput="drawcanvas();"></p>
+    <p>VC:聞き専<input name="vc_radio" type="radio" value="1" onInput="drawcanvas();"> </p>
+    <p>VC:NG<input name="vc_radio" type="radio" value="2" checked onInput="drawcanvas();"></p>
+
+    <p>プレイスタイルフリーコメント：</p>
+    <p><textarea id="ps_area" rows="4" cols="30" onInput="drawcanvas();"></textarea></p>
+
+    <p>ギルド:入らない<input name="guild" type="radio" value="0" onInput="drawcanvas();"></p>
+    <p>ギルド:所属予定<input name="guild" type="radio" value="1" checked onInput="drawcanvas();"> </p>
+    <p>ギルド:設立予定<input name="guild" type="radio" value="2" onInput="drawcanvas();"></p>
+    <p>ギルド:身内<input name="guild" type="radio" value="3" onInput="drawcanvas();"></p>
+    <p>ギルド:未定<input name="guild" type="radio" value="4" onInput="drawcanvas();"> </p>
+
+    <p>ギルド名：<input id="guild_name" placeholder="例：うりぼ狩りガチ勢" onInput="drawcanvas();"></p>
+
+    <p>オンラインゲーム経験：</p>
+    <p><textarea id="game_exp" rows="6" cols="30" onInput="drawcanvas();"></textarea></p>
+
+    <p>自由コメント：</p>
+    <p><textarea id="free_com" rows="7" cols="30" onInput="drawcanvas();"></textarea></p>
+
+
+    <script src="./js/cropper.js"></script>
+    <script src="./js/common.js"></script>
+    <!-- <script src="./js/bp_crop.js"></script> -->
+
+</body>
+
+</html>
