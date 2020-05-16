@@ -1,0 +1,34 @@
+body {
+    background-color: black;
+    color: rgb(0, 195, 255);
+}
+
+#canvas {
+    border: 3px solid white;
+}
+
+#srccanvas {
+    width: 50px;
+    height: 50px;
+}
+
+#name,
+#id,
+#id_tw,
+#id_dc,
+#class1_lv,
+#class2_lv,
+#class3_lv,
+#class4_lv,
+#rank,
+#ps_area,
+#guild_name,
+#game_exp,
+#free_com {
+    background-color: #EEEEEE;
+}
+
+#range1,
+#range2 {
+    width: 30vw;
+}

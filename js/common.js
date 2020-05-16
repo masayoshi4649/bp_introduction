@@ -92,9 +92,10 @@ function drawInput() {
     ctx.fillText(i_id.value, 860, 300);
 
     // TWITTER
-    ctx.font = '16px sans-serif';
-    ctx.fillText(i_id_tw.value, 440, 355);
-
+    if (i_id_tw.value.length != 0) {
+        ctx.font = '16px sans-serif';
+        ctx.fillText("@" + i_id_tw.value, 440, 355);
+    }
     // DISCORD
     ctx.font = '28px sans-serif';
     ctx.fillText(i_id_dc.value, 790, 355);
@@ -269,8 +270,6 @@ function drawInput() {
     }
 
     // 画像
-    console.log("iconimage=>" + iconimage);
-    console.log(iconimagePoint);
     if (iconimage != null) {
         ctx.drawImage(iconimage, iconimagePoint.sx, iconimagePoint.sy, iconimagePoint.sw, iconimagePoint.sh, 50, 245, 240, 320);
     }
@@ -279,14 +278,11 @@ function drawInput() {
 }
 
 function cropIMG(evt) {
-    console.log(evt);
     const files = evt.target.files;
     if (files.length == 0) {
         return;
     }
     let file = files[0];
-    console.log(file);
-
     let image = new Image();
     let reader = new FileReader();
     reader.onload = function (evt) {
@@ -311,22 +307,14 @@ function cropIMG(evt) {
                     scalable: false,
                     zoomable: false,
                     crop: function (event) {
-                        // const croppedCanvas = document.getElementById("croppedCanvas");
                         {
-                            // console.log(image);
-                            // ctx.drawImage(image,
-                            //     event.detail.x / scale, event.detail.y / scale, event.detail.width / scale, event.detail.height / scale,
-                            //     0, 0, 240, 320
-                            // );
                             iconimage = image;
-
                             iconimagePoint = {
                                 "sx": event.detail.x / scale,
                                 "sy": event.detail.y / scale,
                                 "sw": event.detail.width / scale,
                                 "sh": event.detail.height / scale
                             }
-
                             drawInput();
                         }
                     }

@@ -5,16 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BP自己紹介</title>
-    <style>
-        body {
-            background-color: black;
-            color: rgb(0, 195, 255);
-        }
 
-        #canvas {
-            border: 3px solid white;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./css/material.css">
+    <link rel="stylesheet" type="text/css" href="./css/kusopanda.css">
     <link rel="stylesheet" type="text/css" href="./css/cropper.css">
 </head>
 
@@ -22,66 +15,210 @@
 
     <!-- WEBフォントメモ -->
     <!-- <span style="font-family: WEBFONT; display:none;">preload</span><canvas></canvas> -->
+    <div id="img">
+        <canvas id="canvas" width="1050" height="1485"></canvas>
+    </div>
 
-    <canvas id="canvas" width="1050" height="1485"></canvas>
+    <div id="formarea">
+        <p>文字色：<input id="textcolor" type="color" list="color-list" value="#FFA500" onInput="drawcanvas();"></p>
 
-    <p>文字色：<input id="textcolor" type="color" list="color-list" value="#FFA500" onInput="drawcanvas();"></p>
+        <p>画像：<input type="file" id="uploader"></p>
+        <div id="srccanvas">
+            <canvas id="sourceCanvas" width="0" height="0"></canvas>
+        </div>
 
-    <p>画像：<input type="file" id="uploader"></p>
-    <canvas id="sourceCanvas" width="0" height="0"></canvas>
+        <!-- NAME -->
+        <p>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input id="name" class="mdl-textfield__input kusopanda_input" onInput="drawcanvas();">
+            <label class="mdl-textfield__label" for="name">NAME：</label>
+        </div>
+        </p>
 
-    <p>NAME：<input id="name" placeholder="NAME" onInput="drawcanvas();"></p>
-    <p>ID：<input id="id" placeholder="ID" onInput="drawcanvas();"></p>
-    <p>twitter：<input id="id_tw" placeholder="@example" onInput="drawcanvas();"></p>
-    <p>Discord：<input id="id_dc" placeholder="Discord#0000" onInput="drawcanvas();"></p>
+        <!-- ID -->
+        <p>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input id="id" class="mdl-textfield__input" onInput="drawcanvas();">
+            <label class="mdl-textfield__label" for="id">ID：</label>
+        </div>
+        </p>
 
-    <p>クラス1：<input type="checkbox" id="class1" onInput="drawcanvas();"></p>
-    <p id="class1_area">クラス1レベル：<input type="number" id="class1_lv" onInput="drawcanvas();"></p>
-    <p>クラス2：<input type="checkbox" id="class2" onInput="drawcanvas();"></p>
-    <p id="class2_area">クラス2レベル：<input type="number" id="class2_lv" onInput="drawcanvas();"></p>
-    <p>クラス3：<input type="checkbox" id="class3" onInput="drawcanvas();"></p>
-    <p id="class3_area">クラス3レベル：<input type="number" id="class3_lv" onInput="drawcanvas();"></p>
-    <p>クラス4：<input type="checkbox" id="class4" onInput="drawcanvas();"></p>
-    <p id="class4_area">クラス4レベル：<input type="number" id="class4_lv" onInput="drawcanvas();"></p>
+        <!-- Twitter -->
+        <p>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input id="id_tw" class="mdl-textfield__input" onInput="drawcanvas();">
+            <label class="mdl-textfield__label" for="id_tw">Twitter：</label>
+        </div>
+        </p>
 
-    <p>ランク：<input type="number" id="rank" placeholder="バトルスコア" onInput="drawcanvas();"></p>
+        <!-- Discord -->
+        <p>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input id="id_dc" class="mdl-textfield__input" onInput="drawcanvas();">
+            <label class="mdl-textfield__label" for="id_dc">Discord：(例:Discord#0000)</label>
+        </div>
+        </p>
 
-    <p>CAT：<input type="checkbox" id="cat" onInput="drawcanvas();"></p>
-    <p>CBT：<input type="checkbox" id="cbt" onInput="drawcanvas();"></p>
+        <!-- イージスファイター -->
+        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="class1">
+            <input type="checkbox" id="class1" class="mdl-switch__input" onInput="drawcanvas();">
+            <span class="mdl-switch__label">イージスファイター</span>
+        </label>
 
-    <p>プレイヤー特性：<input id="playstyle1" type="range" value="3" min="0" max="6" onInput="drawcanvas();"></p>
-    <p>戦闘スタイル：<input id="playstyle2" type="range" value="3" min="0" max="6" onInput="drawcanvas();"></p>
-
-    <p>平日_始<input id="weekd_beg" type="time" onInput="drawcanvas();"></p>
-    <p>平日_終<input id="weekd_fin" type="time" onInput="drawcanvas();"></p>
-    <p>休日_始<input id="holid_beg" type="time" onInput="drawcanvas();"></p>
-    <p>休日_終<input id="holid_fin" type="time" onInput="drawcanvas();"></p>
-
-    <p>VC:OK<input name="vc_radio" type="radio" value="0" onInput="drawcanvas();"></p>
-    <p>VC:聞き専<input name="vc_radio" type="radio" value="1" onInput="drawcanvas();"> </p>
-    <p>VC:NG<input name="vc_radio" type="radio" value="2" checked onInput="drawcanvas();"></p>
-
-    <p>プレイスタイルフリーコメント：</p>
-    <p><textarea id="ps_area" rows="4" cols="30" onInput="drawcanvas();"></textarea></p>
-
-    <p>ギルド:入らない<input name="guild" type="radio" value="0" onInput="drawcanvas();"></p>
-    <p>ギルド:所属予定<input name="guild" type="radio" value="1" checked onInput="drawcanvas();"> </p>
-    <p>ギルド:設立予定<input name="guild" type="radio" value="2" onInput="drawcanvas();"></p>
-    <p>ギルド:身内<input name="guild" type="radio" value="3" onInput="drawcanvas();"></p>
-    <p>ギルド:未定<input name="guild" type="radio" value="4" onInput="drawcanvas();"> </p>
-
-    <p>ギルド名：<input id="guild_name" placeholder="例：うりぼ狩りガチ勢" onInput="drawcanvas();"></p>
-
-    <p>オンラインゲーム経験：</p>
-    <p><textarea id="game_exp" rows="6" cols="30" onInput="drawcanvas();"></textarea></p>
-
-    <p>自由コメント：</p>
-    <p><textarea id="free_com" rows="7" cols="30" onInput="drawcanvas();"></textarea></p>
+        <div id="class1_area" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="number" class="mdl-textfield__input" id="class1_lv" onInput="drawcanvas();">
+            <label class="mdl-textfield__label" for="class1_lv">レベル（イージスファイター）</label>
+        </div>
 
 
+        <!-- ツインストライカー -->
+        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="class2">
+            <input type="checkbox" id="class2" class="mdl-switch__input" onInput="drawcanvas();">
+            <span class="mdl-switch__label">ツインストライカー</span>
+        </label>
+
+        <div id="class2_area" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="number" class="mdl-textfield__input" id="class2_lv" onInput="drawcanvas();">
+            <label class="mdl-textfield__label" for="class2_lv">レベル（ツインストライカー）</label>
+        </div>
+
+        <!-- ブラストアーチャー -->
+        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="class3">
+            <input type="checkbox" id="class3" class="mdl-switch__input" onInput="drawcanvas();">
+            <span class="mdl-switch__label">ブラストアーチャー</span>
+        </label>
+
+        <div id="class3_area" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="number" class="mdl-textfield__input" id="class3_lv" onInput="drawcanvas();">
+            <label class="mdl-textfield__label" for="class3_lv">レベル（ブラストアーチャー）</label>
+        </div>
+
+        <!-- スペルキャスター -->
+        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="class4">
+            <input type="checkbox" id="class4" class="mdl-switch__input" onInput="drawcanvas();">
+            <span class="mdl-switch__label">スペルキャスター</span>
+        </label>
+
+        <div id="class4_area" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="number" class="mdl-textfield__input" id="class4_lv" onInput="drawcanvas();">
+            <label class="mdl-textfield__label" for="class4_lv">レベル（スペルキャスター）</label>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="number" class="mdl-textfield__input" id="rank" onInput="drawcanvas();">
+            <label class="mdl-textfield__label" for="rank">ランク（バトルスコア）</label>
+        </div>
+
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cat">
+            <input type="checkbox" id="cat" class="mdl-checkbox__input" onInput="drawcanvas();">
+            <span class="mdl-checkbox__label">CAT：</span>
+        </label>
+
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cbt">
+            <input type="checkbox" id="cbt" class="mdl-checkbox__input" onInput="drawcanvas();">
+            <span class="mdl-checkbox__label">CBT：</span>
+        </label>
+
+        <div id="range1">
+            <p>プレイヤー特性：<input id="playstyle1" class="mdl-slider mdl-js-slider" type="range" value="3" min="0" max="6"
+                    onInput="drawcanvas();"></p>
+        </div>
+
+        <div id="range2">
+            <p>戦闘スタイル：<input id="playstyle2" class="mdl-slider mdl-js-slider" type="range" value="3" min="0" max="6"
+                    onInput="drawcanvas();"></p>
+        </div>
+
+        <p>平日_始<input id="weekd_beg" type="time" onInput="drawcanvas();"></p>
+        <p>平日_終<input id="weekd_fin" type="time" onInput="drawcanvas();"></p>
+        <p>休日_始<input id="holid_beg" type="time" onInput="drawcanvas();"></p>
+        <p>休日_終<input id="holid_fin" type="time" onInput="drawcanvas();"></p>
+
+        <div>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="vc_radio0">
+                <input name="vc_radio" id="vc_radio0" type="radio" value="0" class="mdl-radio__button"
+                    onInput="drawcanvas();">
+                <span class="mdl-radio__label">VC:OK</span>
+            </label>
+
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="vc_radio1">
+                <input name="vc_radio" id="vc_radio1" type="radio" value="1" class="mdl-radio__button"
+                    onInput="drawcanvas();">
+                <span class="mdl-radio__label">VC:聞き専</span>
+            </label>
+
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="vc_radio2">
+                <input name="vc_radio" id="vc_radio2" type="radio" value="2" class="mdl-radio__button" checked
+                    onInput="drawcanvas();">
+                <span class="mdl-radio__label">VC:NG</span>
+            </label>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <textarea class="mdl-textfield__input" type="text" rows="4" id="ps_area" onInput="drawcanvas();"></textarea>
+            <label class="mdl-textfield__label" for="ps_area">プレイスタイルフリーコメント：</label>
+        </div>
+
+        <div>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="guild0">
+                <input name="guild" id="guild0" type="radio" value="0" class="mdl-radio__button"
+                    onInput="drawcanvas();">
+                <span class="mdl-radio__label">ギルド:入らない</span>
+            </label>
+
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="guild1">
+                <input name="guild" id="guild1" type="radio" value="1" class="mdl-radio__button" checked
+                    onInput="drawcanvas();">
+                <span class="mdl-radio__label">ギルド:所属予定</span>
+            </label>
+
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="guild2">
+                <input name="guild" id="guild2" type="radio" value="2" class="mdl-radio__button"
+                    onInput="drawcanvas();">
+                <span class="mdl-radio__label">ギルド:設立予定</span>
+            </label>
+
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="guild3">
+                <input name="guild" id="guild3" type="radio" value="3" class="mdl-radio__button"
+                    onInput="drawcanvas();">
+                <span class="mdl-radio__label">ギルド:身内</span>
+            </label>
+
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="guild4">
+                <input name="guild" id="guild4" type="radio" value="4" class="mdl-radio__button"
+                    onInput="drawcanvas();">
+                <span class="mdl-radio__label">ギルド:未定</span>
+            </label>
+        </div>
+
+        <!-- ギルド名 -->
+        <p>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input id="guild_name" class="mdl-textfield__input" onInput="drawcanvas();">
+            <label class="mdl-textfield__label" for="guild_name">ギルド名：</label>
+        </div>
+        </p>
+
+        <p>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <textarea class="mdl-textfield__input" type="text" rows="3" id="game_exp"
+                onInput="drawcanvas();"></textarea>
+            <label class="mdl-textfield__label" for="game_exp">オンラインゲーム経験：</label>
+        </div>
+        </p>
+
+        <p>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <textarea class="mdl-textfield__input" type="text" rows="3" id="free_com"
+                onInput="drawcanvas();"></textarea>
+            <label class="mdl-textfield__label" for="free_com">自由コメント：</label>
+        </div>
+        </p>
+
+    </div>
+    <script src="./js/material.js"></script>
     <script src="./js/cropper.js"></script>
     <script src="./js/common.js"></script>
-    <!-- <script src="./js/bp_crop.js"></script> -->
 
 </body>
 
