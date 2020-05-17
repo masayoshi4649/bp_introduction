@@ -331,6 +331,6 @@ const downloadLink = document.getElementById('download_link');
 function canvasDataDownload() {
 
     downloadLink.href = dq_canvas.toDataURL('image/png');
-    downloadLink.download = "test.png";
+    downloadLink.download = "ブルプロ自己紹介カード.png";
     downloadLink.click();
 }
