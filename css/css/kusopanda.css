@@ -1,0 +1,67 @@
+body {
+    /* background-color: #222222; */
+    color: #000000;
+
+}
+
+.main {
+    display: flex;
+}
+
+#img {
+    margin-top: 0px;
+}
+
+.formarea,
+.formarea2 {
+    margin-top : 3vh;
+    margin-left: 2vw;
+    max-width  : 20vw;
+}
+
+.mdl-radio {
+    display: block;
+}
+
+#canvas {
+    border: 3px solid white;
+}
+
+.mdl-slider.is-upgraded {
+    background: #000000;
+}
+
+.dlbtn {
+    display        : block;
+    position       : relative;
+    width          : 160px;
+    padding        : 0.8em;
+    text-align     : center;
+    text-decoration: none;
+    color          : #FFFFFF;
+    background     : #222222;
+    border         : 1px solid #1B1B1B;
+}
+
+.dlbtn:hover {
+    background     : #000000;
+    color          : #13D8D2;
+    cursor         : pointer;
+    text-decoration: none;
+}
+
+#name,
+#id,
+#id_tw,
+#id_dc,
+#class1_lv,
+#class2_lv,
+#class3_lv,
+#class4_lv,
+#rank,
+#ps_area,
+#guild_name,
+#game_exp,
+#free_com {
+    background-color: #ECF4FE;
+}
