@@ -1,16 +1,36 @@
 body {
-    background-color: black;
-    color: rgb(0, 195, 255);
+    /* background-color: #222222; */
+    color: #000000;
+
+}
+
+.main {
+    display: flex;
+}
+
+#img {
+    margin-top: 0px;
+}
+
+.formarea,
+.formarea2 {
+    margin-top : 10vh;
+    margin-left: 2vw;
+    max-width  : 20vw;
+}
+
+.mdl-radio {
+    display: block;
 }
 
 #canvas {
     border: 3px solid white;
 }
 
-#srccanvas {
-    width: 50px;
-    height: 50px;
+.mdl-slider.is-upgraded {
+    background: #000000;
 }
+
 
 #name,
 #id,
@@ -25,10 +45,5 @@ body {
 #guild_name,
 #game_exp,
 #free_com {
-    background-color: #EEEEEE;
-}
-
-#range1,
-#range2 {
-    width: 30vw;
+    background-color: #ECF4FE;
 }

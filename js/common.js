@@ -325,3 +325,12 @@ function cropIMG(evt) {
     }
     reader.readAsDataURL(file);
 }
+
+const downloadLink = document.getElementById('download_link');
+
+function canvasDataDownload() {
+
+    downloadLink.href = dq_canvas.toDataURL('image/png');
+    downloadLink.download = "test.png";
+    downloadLink.click();
+}
