@@ -1,3 +1,8 @@
+var today = new Date();
+const td_year = today.getFullYear()
+const td_month = ('0' + (parseInt(today.getMonth()) + 1)).slice(-2)
+const td_date = ('0' + today.getDate()).slice(-2);
+
 const dq_canvas = document.querySelector("#canvas");
 const ctx = dq_canvas.getContext("2d");
 
@@ -74,8 +79,7 @@ function drawInput() {
     // 現在日付
     ctx.fillStyle = "#FFFFFF";
     ctx.font = '18px sans-serif';
-    var today = new Date();
-    let date = today.getFullYear() + "/" + ('0' + today.getMonth()).slice(-2) + "/" + ('0' + today.getDate()).slice(-2);
+    const date = td_year + "/" + td_month + "/" + td_date;
     ctx.fillText(date, 10, 1480);
 
     // 入力部文字色
@@ -331,6 +335,6 @@ const downloadLink = document.getElementById('download_link');
 function canvasDataDownload() {
 
     downloadLink.href = dq_canvas.toDataURL('image/png');
-    downloadLink.download = "ブルプロ自己紹介カード.png";
+    downloadLink.download = "ブルプロ自己紹介カード" + td_year + td_month + td_date + ".png";
     downloadLink.click();
 }
