@@ -31,6 +31,24 @@ body {
     background: #000000;
 }
 
+.dlbtn {
+    display        : block;
+    position       : relative;
+    width          : 160px;
+    padding        : 0.8em;
+    text-align     : center;
+    text-decoration: none;
+    color          : #FFFFFF;
+    background     : #222222;
+    border         : 1px solid #1B1B1B;
+}
+
+.dlbtn:hover {
+    background     : #000000;
+    color          : #13D8D2;
+    cursor         : pointer;
+    text-decoration: none;
+}
 
 #name,
 #id,
